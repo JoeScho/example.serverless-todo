@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "322de6c7-f529-4547-bcf4-23169812832f",
+		"name": "Serverless Example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create TODO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonResponse = pm.response.json();",
+							"pm.globals.set(\"todo_id\", jsonResponse.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"todo\": \"this had better work\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3gjrhwy857.execute-api.eu-west-1.amazonaws.com/dev/",
+					"protocol": "https",
+					"host": [
+						"3gjrhwy857",
+						"execute-api",
+						"eu-west-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch TODOs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://3gjrhwy857.execute-api.eu-west-1.amazonaws.com/dev/todo",
+					"protocol": "https",
+					"host": [
+						"3gjrhwy857",
+						"execute-api",
+						"eu-west-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch TODO by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://3gjrhwy857.execute-api.eu-west-1.amazonaws.com/dev/todo/{{todo_id}}",
+					"protocol": "https",
+					"host": [
+						"3gjrhwy857",
+						"execute-api",
+						"eu-west-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"todo",
+						"{{todo_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update TODO by ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"completed\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3gjrhwy857.execute-api.eu-west-1.amazonaws.com/dev/todo/{{todo_id}}",
+					"protocol": "https",
+					"host": [
+						"3gjrhwy857",
+						"execute-api",
+						"eu-west-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"todo",
+						"{{todo_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete TODO by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://3gjrhwy857.execute-api.eu-west-1.amazonaws.com/dev/todo/{{todo_id}}",
+					"protocol": "https",
+					"host": [
+						"3gjrhwy857",
+						"execute-api",
+						"eu-west-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"todo",
+						"{{todo_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

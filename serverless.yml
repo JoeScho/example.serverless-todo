@@ -1,0 +1,61 @@
+service: example.serverless-todo
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: '20201221'
+  region: eu-west-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:eu-west-1:434019474585:table/Todo
+
+functions:
+  addTodo:
+    handler: src/addTodo.handler
+    events:
+      - http:
+          path: /
+          method: post
+  fetchTodos:
+    handler: src/fetchTodos.handler
+    events:
+      - http:
+          path: /todo
+          method: get
+  fetchTodo:
+    handler: src/fetchTodo.handler
+    events:
+      - http:
+          path: /todo/{id}
+          method: get
+  updateTodo:
+    handler: src/updateTodo.handler
+    events:
+      - http:
+          path: /todo/{id}
+          method: put
+  deleteTodo:
+    handler: src/deleteTodo.handler
+    events:
+      - http:
+          path: /todo/{id}
+          method: delete
+
+resources:
+  Resources:
+    TodoTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Todo
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH

@@ -1,0 +1,13 @@
+{
+  "name": "example.serverless-todo",
+  "version": "1.0.0",
+  "description": "A demo Serverless TODO list",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@middy/core": "^2.5.1",
+    "@middy/http-json-body-parser": "^2.5.1",
+    "aws-sdk": "^2.994.0",
+    "uuid": "^8.3.2"
+  }
+}
