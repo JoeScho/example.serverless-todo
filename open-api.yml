@@ -1,0 +1,126 @@
+openapi: 3.0.2
+info:
+  description: Example Serverless TODO Application
+  version: 1.0.0
+  title: Serverless TODO
+paths:
+  /todo:
+    post:
+      summary: Create a new TODO
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+        '500':
+          description: Something went wrong
+      requestBody:
+        description: Create a new TODO
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTodo'
+    get:
+      summary: Fetch all TODOs
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+        '500':
+          description: Something went wrong
+  '/todo/{id}':
+    get:
+      summary: Fetch a TODO
+      parameters:
+        - name: id
+          in: path
+          description: ID of the TODO
+          required: true
+          schema:
+            type: string
+            example: "0d24365e-31b0-44dd-a487-3da692a0998d"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+        '500':
+          description: Something went wrong
+    put:
+      summary: Update a TODO
+      parameters:
+        - name: id
+          in: path
+          description: ID of the TODO
+          required: true
+          schema:
+            type: string
+            example: "0d24365e-31b0-44dd-a487-3da692a0998d"
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+        '500':
+          description: Something went wrong
+      requestBody:
+        description: Create a new pet in the store
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetComplete'
+    delete:
+      summary: Delete a TODO
+      parameters:
+        - name: id
+          in: path
+          description: ID of the TODO
+          required: true
+          schema:
+            type: string
+            example: "0d24365e-31b0-44dd-a487-3da692a0998d"
+      responses:
+        '204':
+          description: Successful operation
+        '500':
+          description: Something went wrong
+components:
+  schemas:
+    CreateTodo:
+      properties:
+        todo:
+          type: string
+          example: Clean teeth
+      type: object
+    SetComplete:
+      properties:
+        complete:
+          type: boolean
+          example: true
+      type: object
+    Todo:
+      properties:
+        completed:
+          type: boolean
+          example: false
+        createdAt:
+          type: string
+          example: "2021-09-24T14:16:09.261Z"
+        todo:
+          type: string
+          example: Clean teeth
+        id:
+          type: string
+          example: "0d24365e-31b0-44dd-a487-3da692a0998d"
+      type: object

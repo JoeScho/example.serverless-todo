@@ -19,7 +19,7 @@ functions:
     handler: src/addTodo.handler
     events:
       - http:
-          path: /
+          path: /todo
           method: post
   fetchTodos:
     handler: src/fetchTodos.handler

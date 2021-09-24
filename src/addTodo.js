@@ -7,7 +7,7 @@ const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
 const handler = async event => {
   const Item = {
-    todo: event.body,
+    todo: event.body.todo,
     createdAt: new Date().toISOString(),
     id: uuid(),
     completed: false,
